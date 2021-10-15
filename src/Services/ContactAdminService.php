@@ -95,7 +95,13 @@ class ContactAdminService extends Service
         $rinfo = null;
 
         $request = new AddContactRequest($this->getLicense(), $rinfo, $cinfo);
+        $response = $client->addContact($request);
 
-        return $client->addContact($request);
+        if ($this->debug()) {
+            print $this->getLastRequest();
+            print $this->getLastResponse();
+        }
+
+        return $response;
     }
 }

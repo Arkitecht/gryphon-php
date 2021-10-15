@@ -114,8 +114,14 @@ class CertifyContactService extends Service
         }
 
         $request = new CertifyContactRequest($this->getLicense(), $rinfo, $cinfo);
+        $response = $client->certifyContact($request);
 
-        return $client->certifyContact($request);
+        if ($this->debug()) {
+            print $this->getLastRequest();
+            print $this->getLastResponse();
+        }
+
+        return $response;
     }
 
     /**

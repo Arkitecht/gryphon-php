@@ -17,6 +17,7 @@ class GryphonService
     protected $live;
     protected $certify_contact_service;
     protected $client;
+    protected $debug = false;
 
     public function __construct($license, $live = true)
     {
@@ -61,5 +62,15 @@ class GryphonService
     public function getLastResponse()
     {
         return $this->client->__getLastResponse();
+    }
+
+    public function setDebug($debug = true)
+    {
+        $this->debug = $debug;
+    }
+
+    public function getDebug()
+    {
+        return $this->debug;
     }
 }

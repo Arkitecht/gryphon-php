@@ -45,4 +45,9 @@ abstract class Service
     {
         return !$this->isSuccess($status);
     }
+
+    public function debug()
+    {
+        return $this->gryphon_service->getDebug();
+    }
 }
