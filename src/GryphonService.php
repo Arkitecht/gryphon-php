@@ -3,6 +3,7 @@
 namespace Arkitecht\Gryphon;
 
 use Arkitecht\Gryphon\Services\CertifyContactService;
+use Arkitecht\Gryphon\Services\ContactAdminService;
 use Arkitecht\Gryphon\SOAP\CertifyChannelInfo;
 use Arkitecht\Gryphon\SOAP\CertifyContact;
 use Arkitecht\Gryphon\SOAP\CertifyContactRequest;
@@ -22,11 +23,17 @@ class GryphonService
         $this->license = $license;
         $this->live = $live;
         $this->certify_contact_service = new CertifyContactService($this);
+        $this->contact_admin_service = new ContactAdminService($this);
     }
 
     public function certify()
     {
         return $this->certify_contact_service;
+    }
+
+    public function contact()
+    {
+        return $this->contact_admin_service;
     }
 
     public function getLicense(): string

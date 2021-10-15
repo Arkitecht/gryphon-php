@@ -74,7 +74,7 @@ class CertifyContactService extends Service
         return (bool)$response[ $email ];
     }
 
-    protected function makeCertifyContactRequest($type, array $values, bool $verbose = false): CertifyContactResponse
+    protected function makeCertifyContactRequest(string $type, array $values, bool $verbose = false): CertifyContactResponse
     {
         $options = [];
         $wsdl = null;

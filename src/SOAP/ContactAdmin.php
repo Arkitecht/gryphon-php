@@ -9,34 +9,34 @@ class ContactAdmin extends \SoapClient
      * @var array $classmap The defined classes
      */
     private static $classmap = [
-        'ConsumerInfo'                 => 'Dish\\Gryphon\\ConsumerInfo',
-        'MailAddress'                  => 'Dish\\Gryphon\\MailAddress',
-        'PreferenceValue'              => 'Dish\\Gryphon\\PreferenceValue',
-        'ExemptionPreferenceValue'     => 'Dish\\Gryphon\\ExemptionPreferenceValue',
-        'MailPreferenceValue'          => 'Dish\\Gryphon\\MailPreferenceValue',
-        'ExemptionMailPreferenceValue' => 'Dish\\Gryphon\\ExemptionMailPreferenceValue',
-        'ChannelInfo'                  => 'Dish\\Gryphon\\ChannelInfo',
-        'ExemptionChannelInfo'         => 'Dish\\Gryphon\\ExemptionChannelInfo',
-        'GryphonWSFault'               => 'Dish\\Gryphon\\GryphonWSFault',
-        'RequestInfo'                  => 'Dish\\Gryphon\\RequestInfo',
-        'addContactRequest'            => 'Dish\\Gryphon\\addContactRequest',
-        'addContactResponse'           => 'Dish\\Gryphon\\addContactResponse',
-        'removeContactRequest'         => 'Dish\\Gryphon\\removeContactRequest',
-        'removeContactResponse'        => 'Dish\\Gryphon\\removeContactResponse',
-        'addExemptionRequest'          => 'Dish\\Gryphon\\addExemptionRequest',
-        'addExemptionResponse'         => 'Dish\\Gryphon\\addExemptionResponse',
-        'removeExemptionRequest'       => 'Dish\\Gryphon\\removeExemptionRequest',
-        'removeExemptionResponse'      => 'Dish\\Gryphon\\removeExemptionResponse',
-        'getContactRequest'            => 'Dish\\Gryphon\\getContactRequest',
-        'getContactResponse'           => 'Dish\\Gryphon\\getContactResponse',
-        'getExemptionRequest'          => 'Dish\\Gryphon\\getExemptionRequest',
-        'getExemptionResponse'         => 'Dish\\Gryphon\\getExemptionResponse',
-        'addVIPContactRequest'         => 'Dish\\Gryphon\\addVIPContactRequest',
-        'addVIPContactResponse'        => 'Dish\\Gryphon\\addVIPContactResponse',
-        'removeVIPContactRequest'      => 'Dish\\Gryphon\\removeVIPContactRequest',
-        'removeVIPContactResponse'     => 'Dish\\Gryphon\\removeVIPContactResponse',
-        'getVIPContactRequest'         => 'Dish\\Gryphon\\getVIPContactRequest',
-        'getVIPContactResponse'        => 'Dish\\Gryphon\\getVIPContactResponse',
+        'ConsumerInfo'                 => 'Arkitecht\\Gryphon\\SOAP\\ConsumerInfo',
+        'MailAddress'                  => 'Arkitecht\\Gryphon\\SOAP\\MailAddress',
+        'PreferenceValue'              => 'Arkitecht\\Gryphon\\SOAP\\PreferenceValue',
+        'ExemptionPreferenceValue'     => 'Arkitecht\\Gryphon\\SOAP\\ExemptionPreferenceValue',
+        'MailPreferenceValue'          => 'Arkitecht\\Gryphon\\SOAP\\MailPreferenceValue',
+        'ExemptionMailPreferenceValue' => 'Arkitecht\\Gryphon\\SOAP\\ExemptionMailPreferenceValue',
+        'ChannelInfo'                  => 'Arkitecht\\Gryphon\\SOAP\\ChannelInfo',
+        'ExemptionChannelInfo'         => 'Arkitecht\\Gryphon\\SOAP\\ExemptionChannelInfo',
+        'GryphonWSFault'               => 'Arkitecht\\Gryphon\\SOAP\\GryphonWSFault',
+        'RequestInfo'                  => 'Arkitecht\\Gryphon\\SOAP\\RequestInfo',
+        'addContactRequest'            => 'Arkitecht\\Gryphon\\SOAP\\AddContactRequest',
+        'addContactResponse'           => 'Arkitecht\\Gryphon\\SOAP\\AddContactResponse',
+        'removeContactRequest'         => 'Arkitecht\\Gryphon\\SOAP\\removeContactRequest',
+        'removeContactResponse'        => 'Arkitecht\\Gryphon\\SOAP\\removeContactResponse',
+        'addExemptionRequest'          => 'Arkitecht\\Gryphon\\SOAP\\addExemptionRequest',
+        'addExemptionResponse'         => 'Arkitecht\\Gryphon\\SOAP\\addExemptionResponse',
+        'removeExemptionRequest'       => 'Arkitecht\\Gryphon\\SOAP\\removeExemptionRequest',
+        'removeExemptionResponse'      => 'Arkitecht\\Gryphon\\SOAP\\removeExemptionResponse',
+        'getContactRequest'            => 'Arkitecht\\Gryphon\\SOAP\\getContactRequest',
+        'getContactResponse'           => 'Arkitecht\\Gryphon\\SOAP\\getContactResponse',
+        'getExemptionRequest'          => 'Arkitecht\\Gryphon\\SOAP\\getExemptionRequest',
+        'getExemptionResponse'         => 'Arkitecht\\Gryphon\\SOAP\\getExemptionResponse',
+        'addVIPContactRequest'         => 'Arkitecht\\Gryphon\\SOAP\\addVIPContactRequest',
+        'addVIPContactResponse'        => 'Arkitecht\\Gryphon\\SOAP\\addVIPContactResponse',
+        'removeVIPContactRequest'      => 'Arkitecht\\Gryphon\\SOAP\\removeVIPContactRequest',
+        'removeVIPContactResponse'     => 'Arkitecht\\Gryphon\\SOAP\\removeVIPContactResponse',
+        'getVIPContactRequest'         => 'Arkitecht\\Gryphon\\SOAP\\getVIPContactRequest',
+        'getVIPContactResponse'        => 'Arkitecht\\Gryphon\\SOAP\\getVIPContactResponse',
     ];
 
     /**
@@ -60,11 +60,11 @@ class ContactAdmin extends \SoapClient
     }
 
     /**
-     * @param addContactRequest $part1
+     * @param AddContactRequest $part1
      *
-     * @return addContactResponse
+     * @return AddContactResponse
      */
-    public function addContact(addContactRequest $part1)
+    public function addContact(AddContactRequest $part1)
     {
         return $this->__soapCall('addContact', [$part1]);
     }

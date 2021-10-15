@@ -2,7 +2,7 @@
 
 namespace Arkitecht\Gryphon\SOAP;
 
-class addContactResponse
+class AddContactResponse
 {
 
     /**
@@ -43,7 +43,7 @@ class addContactResponse
     /**
      * @param int $statusCode
      *
-     * @return \Arkitecht\Gryphon\SOAP\addContactResponse
+     * @return \Arkitecht\Gryphon\SOAP\AddContactResponse
      */
     public function setStatusCode($statusCode)
     {
@@ -63,7 +63,7 @@ class addContactResponse
     /**
      * @param string $statusText
      *
-     * @return \Arkitecht\Gryphon\SOAP\addContactResponse
+     * @return \Arkitecht\Gryphon\SOAP\AddContactResponse
      */
     public function setStatusText($statusText)
     {
@@ -83,7 +83,7 @@ class addContactResponse
     /**
      * @param ChannelInfo $cInfo
      *
-     * @return \Arkitecht\Gryphon\SOAP\addContactResponse
+     * @return \Arkitecht\Gryphon\SOAP\AddContactResponse
      */
     public function setCInfo($cInfo)
     {

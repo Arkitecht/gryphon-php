@@ -2,6 +2,7 @@
 
 namespace Arkitecht\Gryphon\Services;
 
+use Arkitecht\Gryphon\Classes\StatusCode;
 use Arkitecht\Gryphon\GryphonService;
 
 abstract class Service
@@ -33,5 +34,15 @@ abstract class Service
     public function getLastResponse()
     {
         return $this->client->__getLastResponse();
+    }
+
+    public function isSuccess($status): bool
+    {
+        return in_array($status, StatusCode::SUCCESS);
+    }
+
+    public function isFailure($status): bool
+    {
+        return !$this->isSuccess($status);
     }
 }

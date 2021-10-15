@@ -2,7 +2,7 @@
 
 namespace Arkitecht\Gryphon\SOAP;
 
-class addContactRequest
+class AddContactRequest
 {
 
     /**
@@ -43,7 +43,7 @@ class addContactRequest
     /**
      * @param string $licenseID
      *
-     * @return \Arkitecht\Gryphon\SOAP\addContactRequest
+     * @return \Arkitecht\Gryphon\SOAP\AddContactRequest
      */
     public function setLicenseID($licenseID)
     {
@@ -63,7 +63,7 @@ class addContactRequest
     /**
      * @param RequestInfo $rInfo
      *
-     * @return \Arkitecht\Gryphon\SOAP\addContactRequest
+     * @return \Arkitecht\Gryphon\SOAP\AddContactRequest
      */
     public function setRInfo($rInfo)
     {
@@ -83,7 +83,7 @@ class addContactRequest
     /**
      * @param ChannelInfo $cInfo
      *
-     * @return \Arkitecht\Gryphon\SOAP\addContactRequest
+     * @return \Arkitecht\Gryphon\SOAP\AddContactRequest
      */
     public function setCInfo($cInfo)
     {
