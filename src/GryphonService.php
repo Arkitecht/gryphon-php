@@ -27,9 +27,9 @@ class GryphonService
         $this->contact_admin_service = new ContactAdminService($this);
     }
 
-    public function certify()
+    public function certify($campaign = null)
     {
-        return $this->certify_contact_service;
+        return $this->certify_contact_service->setCampaign($campaign);
     }
 
     public function contact()

@@ -116,11 +116,12 @@ class CertifyContactService extends Service
             $cinfo->setPhoneNumber($phoneNumber);
         }
 
-        $rinfo = null;
-
+        $rinfo = new RequestInfo();
         if ($verbose) {
-            $rinfo = new RequestInfo();
             $rinfo->setVerbose(1);
+        }
+        if ($this->campaign) {
+            $rinfo->setCampaignName($this->campaign);
         }
 
         $request = new CertifyContactRequest($this->getLicense(), $rinfo, $cinfo);

@@ -9,11 +9,18 @@ abstract class Service
 {
     protected GryphonService $gryphon_service;
     protected $client;
-
+    protected $campaign;
 
     public function __construct(GryphonService $gryphonService)
     {
         $this->gryphon_service = $gryphonService;
+    }
+
+    public function setCampaign($campaign = null)
+    {
+        $this->campaign = $campaign;
+
+        return $this;
     }
 
     protected function isLive()

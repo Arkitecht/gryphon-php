@@ -5,7 +5,8 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Arkitecht\\Gryphon\\": "src/"
+            "Arkitecht\\Gryphon\\": "src/",
+            "Arkitecht\\Gryphon\\Tests\\": "tests/"
         }
     },
     "authors": [
