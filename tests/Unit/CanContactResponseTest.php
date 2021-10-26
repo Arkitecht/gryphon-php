@@ -31,12 +31,10 @@ class CanContactResponseTest extends TestCase
     }
 
     /** @test */
-    function does_not_return_is_permanent_when_not_verbose()
+    function does_not_return_is_permanent_when_not_verbose_and_no_results()
     {
         $response = new CertificationDetails('test@test.com', 1, 0, 'USA');
-        $response->setResults([
-            new CertificationResults('certstatus', 1),
-        ]);
+        $response->setResults([]);
 
         $canContactResponse = new CanContactResponse('test@test.com', ChannelType::EMAIL, $response, false);
         $this->assertFalse($canContactResponse->isVerbose());
@@ -45,12 +43,17 @@ class CanContactResponseTest extends TestCase
         $this->assertTrue($canContactResponse->isTemporary());
     }
 
-    /** @test */
-    function does_return_is_permanent()
+    /**
+     * @test
+     * @dataProvider permanentProvider
+     */
+    function does_return_is_permanent($field)
     {
+        print "Checking permanence on $field\n";
+
         $response = new CertificationDetails('test@test.com', 1, 0, 'USA');
         $response->setResults([
-            new CertificationResults('certstatus', 1),
+            new CertificationResults($field, 1),
         ]);
 
         $canContactResponse = new CanContactResponse('test@test.com', ChannelType::EMAIL, $response, true);
@@ -58,6 +61,35 @@ class CanContactResponseTest extends TestCase
         $this->assertFalse($canContactResponse->canContact());
         $this->assertTrue($canContactResponse->isPermanent());
         $this->assertFalse($canContactResponse->isTemporary());
+    }
+
+    /**
+     * @test
+     * @dataProvider permanentProvider
+     */
+    function does_return_is_permanent_without_verbose($field)
+    {
+        print "Checking permanence on $field\n";
+
+        $response = new CertificationDetails('test@test.com', 1, 0, 'USA');
+        $response->setResults([
+            new CertificationResults($field, 1),
+        ]);
+
+        $canContactResponse = new CanContactResponse('test@test.com', ChannelType::EMAIL, $response, false);
+        $this->assertFalse($canContactResponse->isVerbose());
+        $this->assertFalse($canContactResponse->canContact());
+        $this->assertTrue($canContactResponse->isPermanent());
+        $this->assertFalse($canContactResponse->isTemporary());
+    }
+
+    function permanentProvider()
+    {
+        $results = [];
+        foreach ( CanContactResponse::PERMANENT_RESULTS as $result ) {
+            $results[] = [$result];
+        }
+        return $results;
     }
 
     /** @test */

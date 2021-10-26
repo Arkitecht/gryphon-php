@@ -42,7 +42,7 @@ class CanContactResponse
 
     public function isPermanent(): bool
     {
-        if (!$this->verbose) {
+        if (!$this->verbose && !$this->response->getResults()) {
             return false;
         }
 
