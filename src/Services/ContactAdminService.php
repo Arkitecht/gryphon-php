@@ -12,6 +12,10 @@ class ContactAdminService extends Service
 {
     public function optOutFromCalls($numbers)
     {
+        if ( !$numbers ) {
+            return true;
+        }
+
         $response = $this->makeAddContactRequest(ChannelType::CALL, $numbers);
         foreach ($response->getCInfo() as $cinfo) {
             foreach ($cinfo->getPhoneNumber() as $number) {
@@ -28,6 +32,10 @@ class ContactAdminService extends Service
 
     public function optOutFromTexts($numbers)
     {
+        if ( !$numbers ) {
+            return true;
+        }
+
         $response = $this->makeAddContactRequest(ChannelType::TEXT, $numbers);
 
         foreach ($response->getCInfo() as $cinfo) {
@@ -45,6 +53,10 @@ class ContactAdminService extends Service
 
     public function optOutFromEmails($emails)
     {
+        if ( !$emails ) {
+            return true;
+        }
+
         $response = $this->makeAddContactRequest(ChannelType::EMAIL, $emails);
 
         foreach ($response->getCInfo() as $cinfo) {
