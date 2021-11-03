@@ -64,4 +64,8 @@ class CanContactResponse
         return !$this->canContact();
     }
 
+    public function response(): CertificationDetails
+    {
+        return $this->response;
+    }
 }
