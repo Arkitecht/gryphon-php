@@ -77,8 +77,11 @@ class CertifyContactService extends Service
 
     protected function makeCertifyContactRequest(string $type, array $values, bool $verbose = false, array $preferences = []): CertifyContactResponse
     {
-        $options = [];
-        $wsdl = null;
+        $options = [
+            'location' => 'https://websvcs.gryphonnetworks.com/CoreServices40/services/CertifyContact',
+        ];
+        $wsdl = 'https://websvcs.gryphonnetworks.com/CoreServices40/services/CertifyContact?wsdl';
+
 
         if (!$this->isLive()) {
             $options = [

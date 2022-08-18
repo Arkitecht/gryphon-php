@@ -67,6 +67,8 @@ class GryphonService
     public function setDebug($debug = true)
     {
         $this->debug = $debug;
+
+        return $this;
     }
 
     public function getDebug()

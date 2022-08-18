@@ -74,8 +74,10 @@ class ContactAdminService extends Service
 
     protected function makeAddContactRequest(string $type, array $values)
     {
-        $options = [];
-        $wsdl = null;
+        $options = [
+            'location' => 'https://websvcs.gryphonnetworks.com/CoreServices40/services/ContactAdmin',
+        ];
+        $wsdl = 'https://websvcs.gryphonnetworks.com/CoreServices40/services/ContactAdmin?wsdl';
 
         if (!$this->isLive()) {
             $options = [
