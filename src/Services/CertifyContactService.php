@@ -78,15 +78,17 @@ class CertifyContactService extends Service
     protected function makeCertifyContactRequest(string $type, array $values, bool $verbose = false, array $preferences = []): CertifyContactResponse
     {
         $options = [
-            'location' => 'https://websvcs.gryphonnetworks.com/CoreServices40/services/CertifyContact',
+            'location'   => 'https://websvcs.gryphonnetworks.com/CoreServices40/services/CertifyContact',
+            'keep_alive' => false,
         ];
         $wsdl = 'https://websvcs.gryphonnetworks.com/CoreServices40/services/CertifyContact?wsdl';
 
 
         if (!$this->isLive()) {
             $options = [
-                'trace'    => true,
-                'location' => 'https://testwebsvcs.gryphonnetworks.com/CoreServices40/services/CertifyContact',
+                'trace'      => true,
+                'location'   => 'https://testwebsvcs.gryphonnetworks.com/CoreServices40/services/CertifyContact',
+                'keep_alive' => false,
             ];
             $wsdl = 'https://testwebsvcs.gryphonnetworks.com/CoreServices40/services/CertifyContact?wsdl';
         }

@@ -12,7 +12,7 @@ class ContactAdminService extends Service
 {
     public function optOutFromCalls($numbers)
     {
-        if ( !$numbers ) {
+        if (!$numbers) {
             return true;
         }
 
@@ -32,7 +32,7 @@ class ContactAdminService extends Service
 
     public function optOutFromTexts($numbers)
     {
-        if ( !$numbers ) {
+        if (!$numbers) {
             return true;
         }
 
@@ -53,7 +53,7 @@ class ContactAdminService extends Service
 
     public function optOutFromEmails($emails)
     {
-        if ( !$emails ) {
+        if (!$emails) {
             return true;
         }
 
@@ -75,14 +75,16 @@ class ContactAdminService extends Service
     protected function makeAddContactRequest(string $type, array $values)
     {
         $options = [
-            'location' => 'https://websvcs.gryphonnetworks.com/CoreServices40/services/ContactAdmin',
+            'location'   => 'https://websvcs.gryphonnetworks.com/CoreServices40/services/ContactAdmin',
+            'keep_alive' => false,
         ];
         $wsdl = 'https://websvcs.gryphonnetworks.com/CoreServices40/services/ContactAdmin?wsdl';
 
         if (!$this->isLive()) {
             $options = [
-                'trace'    => true,
-                'location' => 'https://testwebsvcs.gryphonnetworks.com/CoreServices40/services/ContactAdmin',
+                'trace'      => true,
+                'location'   => 'https://testwebsvcs.gryphonnetworks.com/CoreServices40/services/ContactAdmin',
+                'keep_alive' => false,
             ];
             $wsdl = 'https://testwebsvcs.gryphonnetworks.com/CoreServices40/services/ContactAdmin?wsdl';
         }
