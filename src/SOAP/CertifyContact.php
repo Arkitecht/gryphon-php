@@ -40,7 +40,7 @@ class CertifyContact extends \SoapClient
         }
         $options = array_merge(['features' => 1], $options);
         if (!$wsdl) {
-            $wsdl = 'https://websvcs.gryphonnetworks.com/CoreServices40/services/CertifyContact?wsdl';
+            $wsdl = 'https://websvcs.gryphon.ai/CoreServices40/services/CertifyContact?wsdl';
         }
 
         parent::__construct($wsdl, $options);

@@ -54,7 +54,7 @@ class ContactAdmin extends \SoapClient
             'features' => 1,
         ], $options);
         if (!$wsdl) {
-            $wsdl = 'https://websvcs.gryphonnetworks.com/CoreServices40/services/ContactAdmin?wsdl';
+            $wsdl = 'https://websvcs.gryphon.ai/CoreServices40/services/ContactAdmin?wsdl';
         }
         parent::__construct($wsdl, $options);
     }

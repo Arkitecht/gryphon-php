@@ -75,18 +75,18 @@ class ContactAdminService extends Service
     protected function makeAddContactRequest(string $type, array $values)
     {
         $options = [
-            'location'   => 'https://websvcs.gryphonnetworks.com/CoreServices40/services/ContactAdmin',
+            'location'   => 'https://websvcs.gryphon.ai/CoreServices40/services/ContactAdmin',
             'keep_alive' => false,
         ];
-        $wsdl = 'https://websvcs.gryphonnetworks.com/CoreServices40/services/ContactAdmin?wsdl';
+        $wsdl = 'https://websvcs.gryphon.ai/CoreServices40/services/ContactAdmin?wsdl';
 
         if (!$this->isLive()) {
             $options = [
                 'trace'      => true,
-                'location'   => 'https://testwebsvcs.gryphonnetworks.com/CoreServices40/services/ContactAdmin',
+                'location'   => 'https://testwebsvcs.gryphon.ai/CoreServices40/services/ContactAdmin',
                 'keep_alive' => false,
             ];
-            $wsdl = 'https://testwebsvcs.gryphonnetworks.com/CoreServices40/services/ContactAdmin?wsdl';
+            $wsdl = 'https://testwebsvcs.gryphon.ai/CoreServices40/services/ContactAdmin?wsdl';
         }
 
         $this->client = $client = new ContactAdmin($options, $wsdl);
