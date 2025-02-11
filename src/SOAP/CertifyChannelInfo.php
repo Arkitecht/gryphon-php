@@ -9,6 +9,11 @@ class CertifyChannelInfo
      * @var string $channelType
      */
     protected $channelType = null;
+    protected $textAddress = null;
+    protected $emailAddress = null;
+    protected $mailAddress = null;
+    protected $phoneNumber = null;
+    protected $channelStatus = null;
 
     /**
      * @param string $channelType

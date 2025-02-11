@@ -16,6 +16,7 @@ class GryphonService
     protected $license;
     protected $live;
     protected $certify_contact_service;
+    protected $contact_admin_service;
     protected $client;
     protected $debug = false;
 

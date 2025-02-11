@@ -21,9 +21,9 @@ class AddContactRequest
     protected $cInfo = null;
 
     /**
-     * @param string      $licenseID
-     * @param RequestInfo $rInfo
-     * @param ChannelInfo $cInfo
+     * @param string             $licenseID
+     * @param RequestInfo|null   $rInfo
+     * @param CertifyChannelInfo $cInfo
      */
     public function __construct($licenseID, $rInfo, $cInfo)
     {

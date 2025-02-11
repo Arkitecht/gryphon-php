@@ -3,10 +3,14 @@
 namespace Arkitecht\Gryphon\Services;
 
 use Arkitecht\Gryphon\SOAP\AddContactRequest;
+use Arkitecht\Gryphon\SOAP\addExemptionRequest;
 use Arkitecht\Gryphon\SOAP\CertifyChannelInfo;
 use Arkitecht\Gryphon\SOAP\CertifyPreferenceValue;
 use Arkitecht\Gryphon\SOAP\ChannelType;
 use Arkitecht\Gryphon\SOAP\ContactAdmin;
+use Arkitecht\Gryphon\SOAP\ExemptionChannelInfo;
+use Arkitecht\Gryphon\SOAP\ExemptionPreferenceValue;
+use Carbon\Carbon;
 
 class ContactAdminService extends Service
 {
@@ -72,25 +76,18 @@ class ContactAdminService extends Service
         return false;
     }
 
-    protected function makeAddContactRequest(string $type, array $values)
+    public function addExemption(string $type, string|array $values)
     {
-        $options = [
-            'location'   => 'https://websvcs.gryphon.ai/CoreServices40/services/ContactAdmin',
-            'keep_alive' => false,
-        ];
-        $wsdl = 'https://websvcs.gryphon.ai/CoreServices40/services/ContactAdmin?wsdl';
-
-        if (!$this->isLive()) {
-            $options = [
-                'trace'      => true,
-                'location'   => 'https://testwebsvcs.gryphon.ai/CoreServices40/services/ContactAdmin',
-                'keep_alive' => false,
-            ];
-            $wsdl = 'https://testwebsvcs.gryphon.ai/CoreServices40/services/ContactAdmin?wsdl';
+        if (!is_array($values)) {
+            $values = [$values];
         }
 
-        $this->client = $client = new ContactAdmin($options, $wsdl);
-        $this->gryphon_service->setClient($client);
+        return $this->makeAddExemptionRequest($type, $values);
+    }
+
+    protected function makeAddContactRequest(string $type, array $values)
+    {
+        $client = $this->getClient();
 
         $cinfo = new CertifyChannelInfo($type);
         if ($type == ChannelType::EMAIL) {
@@ -119,5 +116,61 @@ class ContactAdminService extends Service
         }
 
         return $response;
+    }
+
+    protected function makeAddExemptionRequest(string $type, array $values)
+    {
+        $client = $this->getClient();
+
+        $cinfo = new ExemptionChannelInfo($type);
+        if ($type == ChannelType::EMAIL) {
+            $emails = new ExemptionPreferenceValue($values);
+            $cinfo->setEmailAddress($emails);
+        }
+
+        if ($type == ChannelType::TEXT) {
+            $textAddress = new ExemptionPreferenceValue($values);
+            $cinfo->setTextAddress($textAddress);
+            $textAddress->setExemptionName('Express Written Permission');
+            $textAddress->setExemptionDate(Carbon::now()->toIso8601ZuluString());
+        }
+
+        if ($type == ChannelType::CALL) {
+            $phoneNumber = new ExemptionPreferenceValue($values);
+            $cinfo->setPhoneNumber($phoneNumber);
+        }
+
+        $request = new AddExemptionRequest($this->getLicense(), null, $cinfo);
+        $response = $client->addExemption($request);
+
+        if ($this->debug()) {
+            print $this->getLastRequest();
+            print $this->getLastResponse();
+        }
+
+        return $response;
+    }
+
+    protected function getClient()
+    {
+        $options = [
+            'location'   => 'https://websvcs.gryphon.ai/CoreServices40/services/ContactAdmin',
+            'keep_alive' => false,
+        ];
+        $wsdl = 'https://websvcs.gryphon.ai/CoreServices40/services/ContactAdmin?wsdl';
+
+        if (!$this->isLive()) {
+            $options = [
+                'trace'      => true,
+                'location'   => 'https://testwebsvcs.gryphon.ai/CoreServices40/services/ContactAdmin',
+                'keep_alive' => false,
+            ];
+            $wsdl = 'https://testwebsvcs.gryphon.ai/CoreServices40/services/ContactAdmin?wsdl';
+        }
+
+        $this->client = $client = new ContactAdmin($options, $wsdl);
+        $this->gryphon_service->setClient($client);
+        
+        return $client;
     }
 }

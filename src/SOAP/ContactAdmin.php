@@ -2,6 +2,8 @@
 
 namespace Arkitecht\Gryphon\SOAP;
 
+use PHPUnit\Util\Xml;
+
 class ContactAdmin extends \SoapClient
 {
 
@@ -57,6 +59,23 @@ class ContactAdmin extends \SoapClient
             $wsdl = 'https://websvcs.gryphon.ai/CoreServices40/services/ContactAdmin?wsdl';
         }
         parent::__construct($wsdl, $options);
+    }
+
+    public function __doRequest($request, $location, $action, $version, $one_way = false,): ?string
+    {
+        dump($request);
+        $xml = simplexml_load_string($request);
+
+        foreach ($xml->xpath('//*[not(node())]') as $remove) {
+            $name = $remove->getName();
+            if ($name !== 'rInfo') {
+                unset($remove[0]);
+            }
+        }
+
+        $request = $xml->asXML();
+
+        return parent::__doRequest($request, $location, $action, $version, $one_way);
     }
 
     /**
@@ -146,7 +165,7 @@ class ContactAdmin extends \SoapClient
      */
     public function removeContact(removeContactRequest $part1)
     {
-        return $this->__soapCall('removeContact', array($part1));
+        return $this->__soapCall('removeContact', [$part1]);
     }
 
 }

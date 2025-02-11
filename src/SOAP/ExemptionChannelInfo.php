@@ -161,7 +161,7 @@ class ExemptionChannelInfo
      *
      * @return \Arkitecht\Gryphon\SOAP\ExemptionChannelInfo
      */
-    public function setTextAddress(array $textAddress = null)
+    public function setTextAddress(ExemptionPreferenceValue $textAddress = null)
     {
         $this->textAddress = $textAddress;
 
