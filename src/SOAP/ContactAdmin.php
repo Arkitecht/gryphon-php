@@ -63,7 +63,6 @@ class ContactAdmin extends \SoapClient
 
     public function __doRequest($request, $location, $action, $version, $one_way = false,): ?string
     {
-        dump($request);
         $xml = simplexml_load_string($request);
 
         foreach ($xml->xpath('//*[not(node())]') as $remove) {
