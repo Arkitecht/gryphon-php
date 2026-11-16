@@ -124,8 +124,10 @@ class ContactAdminService extends Service
 
         $cinfo = new ExemptionChannelInfo($type);
         if ($type == ChannelType::EMAIL) {
-            $emails = new ExemptionPreferenceValue($values);
-            $cinfo->setEmailAddress($emails);
+            $emailAddress = new ExemptionPreferenceValue($values);
+            $emailAddress->setExemptionName('Express Written Permission');
+            $emailAddress->setExemptionDate(Carbon::now()->toIso8601ZuluString());
+            $cinfo->setEmailAddress($emailAddress);
         }
 
         if ($type == ChannelType::TEXT) {

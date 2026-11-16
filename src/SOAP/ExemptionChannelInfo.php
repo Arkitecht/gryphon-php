@@ -141,7 +141,7 @@ class ExemptionChannelInfo
      *
      * @return \Arkitecht\Gryphon\SOAP\ExemptionChannelInfo
      */
-    public function setEmailAddress(array $emailAddress = null)
+    public function setEmailAddress(ExemptionPreferenceValue $emailAddress = null)
     {
         $this->emailAddress = $emailAddress;
 
